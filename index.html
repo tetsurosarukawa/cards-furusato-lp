@@ -9,7 +9,7 @@
 <meta property="og:description" content="ふるさと納税市場に精通したプロが、返礼品の企画から広告運用まで一気通貫で支援します。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tetsurosarukawa.github.io/cards-furusato-lp/">
-<meta property="og:image" content="https://tetsurosarukawa.github.io/cards-furusato-lp/ogp.svg">
+<meta property="og:image" content="https://images.unsplash.com/photo-1773393878458-e793434a80cc?w=1200&h=630&fit=crop&auto=format&q=80">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -154,9 +154,9 @@ ul{list-style:none}
 .feature-item{display:flex;flex-direction:column;gap:24px;align-items:center}
 @media(min-width:768px){.feature-item{flex-direction:row;gap:48px}}
 @media(min-width:768px){.feature-item:nth-child(even){flex-direction:row-reverse}}
-.feature-image{flex:1;background:var(--bg-gray);border-radius:0;overflow:hidden;min-height:240px;display:flex;align-items:center;justify-content:center;padding:0}
-@media(min-width:768px){.feature-image{min-height:320px}}
-.feature-image svg{width:100%;height:100%;display:block}
+.feature-image{flex:1;overflow:hidden;min-height:240px;display:flex;align-items:center;justify-content:center;padding:0;border-radius:0}
+@media(min-width:768px){.feature-image{min-height:320px} .feature-image img{min-height:320px}}
+.feature-image img{width:100%;height:100%;object-fit:cover;min-height:240px}
 .feature-content{flex:1}
 .feature-num{font-family:"Barlow Semi Condensed",sans-serif;font-size:14px;font-weight:700;color:var(--red);letter-spacing:.15em;margin-bottom:12px}
 .feature-content h3{font-size:18px;font-weight:700;color:var(--navy);line-height:1.6;letter-spacing:.06em;margin-bottom:12px}
@@ -371,65 +371,7 @@ ul{list-style:none}
     <div class="fv-image">
       <!-- Hero Illustration -->
       <div class="fv-illustration">
-        <svg viewBox="0 0 480 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Background landscape -->
-          <rect width="480" height="400" rx="12" fill="#F5F5F5"/>
-          <!-- Sky gradient -->
-          <rect width="480" height="220" rx="12" fill="url(#skyGrad)"/>
-          <!-- Mountains -->
-          <path d="M0 200 L80 120 L140 170 L200 90 L260 150 L320 80 L380 140 L440 100 L480 130 L480 220 L0 220Z" fill="#0E043A" opacity=".12"/>
-          <path d="M0 210 L60 160 L120 190 L180 130 L240 180 L300 120 L360 170 L420 140 L480 160 L480 220 L0 220Z" fill="#0E043A" opacity=".08"/>
-          <!-- Ground / Fields -->
-          <rect y="220" width="480" height="180" fill="#e8eedb"/>
-          <!-- Rice paddy lines -->
-          <path d="M0 240 Q120 230 240 245 Q360 260 480 250" stroke="#c5d4a0" stroke-width="1.5" fill="none"/>
-          <path d="M0 260 Q120 250 240 265 Q360 280 480 270" stroke="#c5d4a0" stroke-width="1.5" fill="none"/>
-          <path d="M0 280 Q120 270 240 285 Q360 300 480 290" stroke="#c5d4a0" stroke-width="1.5" fill="none"/>
-          <!-- Analytics card overlay -->
-          <rect x="40" y="50" width="200" height="140" rx="8" fill="white" filter="url(#cardShadow)"/>
-          <text x="60" y="78" font-family="Barlow Semi Condensed" font-size="11" font-weight="700" fill="#0E043A" letter-spacing=".1em">DONATION ANALYTICS</text>
-          <line x1="60" y1="86" x2="220" y2="86" stroke="#eee" stroke-width="1"/>
-          <!-- Chart bars -->
-          <rect x="70" y="140" width="20" height="35" rx="2" fill="#0E043A" opacity=".15"/>
-          <rect x="100" y="125" width="20" height="50" rx="2" fill="#0E043A" opacity=".25"/>
-          <rect x="130" y="110" width="20" height="65" rx="2" fill="#0E043A" opacity=".35"/>
-          <rect x="160" y="95" width="20" height="80" rx="2" fill="#FF6300" opacity=".8"/>
-          <rect x="190" y="100" width="20" height="75" rx="2" fill="#FF6300" opacity=".6"/>
-          <!-- Growth arrow -->
-          <path d="M75 145 L170 95" stroke="#FF3600" stroke-width="2" stroke-dasharray="4 3"/>
-          <polygon points="172,90 178,98 168,98" fill="#FF3600"/>
-          <!-- Service card -->
-          <rect x="260" y="160" width="190" height="200" rx="8" fill="white" filter="url(#cardShadow)"/>
-          <text x="280" y="188" font-family="Noto Sans JP" font-size="12" font-weight="700" fill="#0E043A">ワンス���ップ支援</text>
-          <line x1="280" y1="198" x2="430" y2="198" stroke="#eee" stroke-width="1"/>
-          <!-- Checklist -->
-          <circle cx="290" cy="220" r="6" fill="#FF3600" opacity=".15"/><text x="290" y="223" font-size="9" fill="#FF3600" text-anchor="middle" font-weight="700">&#10003;</text>
-          <text x="305" y="224" font-family="Noto Sans JP" font-size="11" fill="#231815">返礼品の企画・開発</text>
-          <circle cx="290" cy="248" r="6" fill="#FF3600" opacity=".15"/><text x="290" y="251" font-size="9" fill="#FF3600" text-anchor="middle" font-weight="700">&#10003;</text>
-          <text x="305" y="252" font-family="Noto Sans JP" font-size="11" fill="#231815">商品ページ制作・最適化</text>
-          <circle cx="290" cy="276" r="6" fill="#FF3600" opacity=".15"/><text x="290" y="279" font-size="9" fill="#FF3600" text-anchor="middle" font-weight="700">&#10003;</text>
-          <text x="305" y="280" font-family="Noto Sans JP" font-size="11" fill="#231815">RPP・CPA広告運用</text>
-          <circle cx="290" cy="304" r="6" fill="#FF3600" opacity=".15"/><text x="290" y="307" font-size="9" fill="#FF3600" text-anchor="middle" font-weight="700">&#10003;</text>
-          <text x="305" y="308" font-family="Noto Sans JP" font-size="11" fill="#231815">イベント戦略立案</text>
-          <circle cx="290" cy="332" r="6" fill="#FF3600" opacity=".15"/><text x="290" y="335" font-size="9" fill="#FF3600" text-anchor="middle" font-weight="700">&#10003;</text>
-          <text x="305" y="336" font-family="Noto Sans JP" font-size="11" fill="#231815">データ分析・改善</text>
-          <!-- Floating badge -->
-          <rect x="220" y="20" width="110" height="44" rx="22" fill="#FF6300" filter="url(#cardShadow)"/>
-          <text x="275" y="38" font-family="Barlow Semi Condensed" font-size="20" font-weight="700" fill="white" text-anchor="middle">350%</text>
-          <text x="275" y="52" font-family="Noto Sans JP" font-size="9" fill="white" text-anchor="middle" opacity=".9">寄附額UP</text>
-          <!-- Decorative circles -->
-          <circle cx="430" cy="60" r="30" fill="#0E043A" opacity=".06"/>
-          <circle cx="450" cy="90" r="15" fill="#FF6300" opacity=".1"/>
-          <defs>
-            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="220">
-              <stop offset="0%" stop-color="#d4e4f7"/>
-              <stop offset="100%" stop-color="#eef2f7"/>
-            </linearGradient>
-            <filter id="cardShadow" x="-4%" y="-4%" width="108%" height="112%">
-              <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity=".08"/>
-            </filter>
-          </defs>
-        </svg>
+        <img src="https://images.unsplash.com/photo-1773393878458-e793434a80cc?w=960&h=640&fit=crop&auto=format&q=80" alt="日本の美しい棚田風景" style="width:100%;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.12)">
       </div>
       <div class="fv-stats">
         <div class="fv-stat"><div class="fv-stat-num">50<small>+</small></div><div class="fv-stat-label">支援自治体数</div></div>
@@ -540,7 +482,7 @@ ul{list-style:none}
     <h2 class="section-heading">CARDSの<span class="hl">ふるさと納税運用支援</span>の特徴</h2>
     <div class="feature-list">
       <div class="feature-item">
-        <div class="feature-image"><svg viewBox="0 0 240 180" fill="none"><rect width="240" height="180" fill="#F5F5F5"/><rect x="40" y="25" width="160" height="130" rx="6" fill="white" stroke="#e0e0e0"/><rect x="40" y="25" width="160" height="28" rx="6" fill="#0E043A"/><text x="120" y="44" font-family="Barlow Semi Condensed" font-size="11" fill="white" text-anchor="middle" font-weight="600">MARKET TRENDS</text><rect x="55" y="65" width="50" height="8" rx="2" fill="#0E043A" opacity=".1"/><rect x="55" y="65" width="35" height="8" rx="2" fill="#FF6300"/><rect x="55" y="82" width="50" height="8" rx="2" fill="#0E043A" opacity=".1"/><rect x="55" y="82" width="45" height="8" rx="2" fill="#FF3600"/><rect x="55" y="99" width="50" height="8" rx="2" fill="#0E043A" opacity=".1"/><rect x="55" y="99" width="25" height="8" rx="2" fill="#0E043A" opacity=".4"/><rect x="55" y="116" width="50" height="8" rx="2" fill="#0E043A" opacity=".1"/><rect x="55" y="116" width="50" height="8" rx="2" fill="#FF6300" opacity=".7"/><circle cx="165" cy="95" r="30" fill="#0E043A" opacity=".08"/><path d="M165 65 A30 30 0 0 1 193 107 L165 95Z" fill="#FF6300"/><path d="M165 65 A30 30 0 0 0 143 118 L165 95Z" fill="#0E043A" opacity=".3"/></svg></div>
+        <div class="feature-image"><img src="https://images.unsplash.com/photo-1682147026652-d4ea9fb76efd?w=600&h=400&fit=crop&auto=format&q=80" alt="ふるさと納税市場の専門知識"></div>
         <div class="feature-content">
           <div class="feature-num">FEATURE 01</div>
           <h3>ふるさと納税市場に特化した専門知識</h3>
@@ -548,7 +490,7 @@ ul{list-style:none}
         </div>
       </div>
       <div class="feature-item">
-        <div class="feature-image"><svg viewBox="0 0 240 180" fill="none"><rect width="240" height="180" fill="#F5F5F5"/><rect x="30" y="20" width="180" height="140" rx="6" fill="white" stroke="#e0e0e0"/><text x="50" y="42" font-family="Barlow Semi Condensed" font-size="10" font-weight="600" fill="#0E043A" letter-spacing=".1em">100+ CLIENTS</text><line x1="50" y1="130" x2="190" y2="130" stroke="#eee"/><line x1="50" y1="50" x2="50" y2="130" stroke="#eee"/><path d="M50 120 L80 105 L110 95 L140 80 L170 55 L190 50 L190 130 L50 130Z" fill="#FF6300" opacity=".12"/><polyline points="50,120 80,105 110,95 140,80 170,55 190,50" stroke="#FF6300" stroke-width="2.5" fill="none"/><circle cx="190" cy="50" r="5" fill="#FF6300"/><text x="190" y="44" font-family="Barlow Semi Condensed" font-size="10" fill="#FF3600" text-anchor="middle" font-weight="700">100+</text></svg></div>
+        <div class="feature-image"><img src="https://images.unsplash.com/photo-1661347859297-859b8ae1d7c5?w=600&h=400&fit=crop&auto=format&q=80" alt="100社以上のEC支援実績"></div>
         <div class="feature-content">
           <div class="feature-num">FEATURE 02</div>
           <h3>100社以上のEC支援実績から得たノウハウ</h3>
@@ -556,7 +498,7 @@ ul{list-style:none}
         </div>
       </div>
       <div class="feature-item">
-        <div class="feature-image"><svg viewBox="0 0 240 180" fill="none"><rect width="240" height="180" fill="#F5F5F5"/><rect x="35" y="15" width="170" height="150" rx="6" fill="white" stroke="#e0e0e0"/><rect x="35" y="15" width="170" height="24" rx="6" fill="#0E043A" opacity=".05"/><circle cx="50" cy="27" r="4" fill="#FF3600" opacity=".4"/><circle cx="62" cy="27" r="4" fill="#FF6300" opacity=".4"/><circle cx="74" cy="27" r="4" fill="#c5d4a0" opacity=".6"/><rect x="48" y="48" width="65" height="55" rx="4" fill="#e8eedb"/><path d="M60 88 L72 72 L80 80 L95 65 L105 78 L105 95 L55 95Z" fill="#c5d4a0" opacity=".6"/><rect x="125" y="50" width="68" height="6" rx="1" fill="#0E043A" opacity=".15"/><rect x="125" y="62" width="55" height="4" rx="1" fill="#0E043A" opacity=".08"/><rect x="125" y="72" width="60" height="4" rx="1" fill="#0E043A" opacity=".08"/><text x="125" y="92" font-size="10" fill="#FF6300">&#9733;&#9733;&#9733;&#9733;&#9733;</text><rect x="125" y="96" width="60" height="16" rx="8" fill="#FF6300"/><rect x="48" y="115" width="36" height="16" rx="3" fill="#0E043A"/><text x="66" y="126" font-size="7" fill="white" text-anchor="middle" font-weight="600">SEO</text><rect x="90" y="115" width="44" height="16" rx="3" fill="#FF3600" opacity=".15"/><text x="112" y="126" font-size="7" fill="#FF3600" text-anchor="middle" font-weight="600">CVR UP</text></svg></div>
+        <div class="feature-image"><img src="https://images.unsplash.com/photo-1681666713728-9ed75e148617?w=600&h=400&fit=crop&auto=format&q=80" alt="返礼品ページの制作・最適化"></div>
         <div class="feature-content">
           <div class="feature-num">FEATURE 03</div>
           <h3>返礼品ページの企画・制作・最適化</h3>
@@ -564,7 +506,7 @@ ul{list-style:none}
         </div>
       </div>
       <div class="feature-item">
-        <div class="feature-image"><svg viewBox="0 0 240 180" fill="none"><rect width="240" height="180" fill="#F5F5F5"/><rect x="30" y="15" width="180" height="150" rx="6" fill="white" stroke="#e0e0e0"/><text x="50" y="38" font-family="Barlow Semi Condensed" font-size="10" font-weight="600" fill="#0E043A" letter-spacing=".1em">AD PERFORMANCE</text><rect x="42" y="48" width="75" height="36" rx="4" fill="#0E043A" opacity=".04"/><text x="52" y="62" font-size="7" fill="#666">ROAS</text><text x="52" y="76" font-family="Barlow Semi Condensed" font-size="16" fill="#FF3600" font-weight="700">450%</text><rect x="123" y="48" width="75" height="36" rx="4" fill="#0E043A" opacity=".04"/><text x="133" y="62" font-size="7" fill="#666">CPA</text><text x="133" y="76" font-family="Barlow Semi Condensed" font-size="16" fill="#0E043A" font-weight="700">-40%</text><circle cx="80" cy="125" r="35" stroke="#0E043A" opacity=".1"/><circle cx="80" cy="125" r="24" stroke="#0E043A" opacity=".15"/><circle cx="80" cy="125" r="13" stroke="#FF6300" stroke-width="2"/><circle cx="80" cy="125" r="4" fill="#FF6300"/><rect x="128" y="100" width="60" height="14" rx="7" fill="#0E043A" opacity=".06"/><rect x="128" y="120" width="50" height="14" rx="7" fill="#FF6300" opacity=".12"/><rect x="128" y="140" width="55" height="14" rx="7" fill="#0E043A" opacity=".06"/></svg></div>
+        <div class="feature-image"><img src="https://images.unsplash.com/photo-1686061593213-98dad7c599b9?w=600&h=400&fit=crop&auto=format&q=80" alt="RPP広告・CPA広告の運用"></div>
         <div class="feature-content">
           <div class="feature-num">FEATURE 04</div>
           <h3>RPP広告・CPA広告の運用代行</h3>
@@ -572,7 +514,7 @@ ul{list-style:none}
         </div>
       </div>
       <div class="feature-item">
-        <div class="feature-image"><svg viewBox="0 0 240 180" fill="none"><rect width="240" height="180" fill="#F5F5F5"/><rect x="30" y="15" width="180" height="150" rx="6" fill="white" stroke="#e0e0e0"/><rect x="30" y="15" width="180" height="28" rx="6" fill="#FF3600"/><text x="120" y="34" font-family="Barlow Semi Condensed" font-size="12" fill="white" text-anchor="middle" font-weight="700">SUPER SALE</text><line x1="30" y1="60" x2="210" y2="60" stroke="#eee"/><line x1="30" y1="85" x2="210" y2="85" stroke="#eee"/><line x1="30" y1="110" x2="210" y2="110" stroke="#eee"/><line x1="30" y1="135" x2="210" y2="135" stroke="#eee"/><rect x="40" y="63" width="50" height="18" rx="3" fill="#FF6300" opacity=".15"/><text x="65" y="76" font-size="8" fill="#FF6300" text-anchor="middle" font-weight="600">SALE</text><rect x="130" y="88" width="65" height="18" rx="3" fill="#0E043A" opacity=".08"/><text x="162" y="101" font-size="8" fill="#0E043A" text-anchor="middle" font-weight="600">マラソン</text><rect x="50" y="113" width="55" height="18" rx="3" fill="#FF3600" opacity=".12"/><text x="77" y="126" font-size="8" fill="#FF3600" text-anchor="middle" font-weight="600">5の倍数</text><rect x="155" y="138" width="45" height="20" rx="10" fill="#FF6300"/><text x="177" y="152" font-size="9" fill="white" text-anchor="middle" font-weight="700">+200%</text></svg></div>
+        <div class="feature-image"><img src="https://images.unsplash.com/photo-1722593856418-05d6d47eec59?w=600&h=400&fit=crop&auto=format&q=80" alt="楽天イベント戦略"></div>
         <div class="feature-content">
           <div class="feature-num">FEATURE 05</div>
           <h3>スーパーSALE・お買い物マラソン等イベント戦略</h3>
@@ -580,7 +522,7 @@ ul{list-style:none}
         </div>
       </div>
       <div class="feature-item">
-        <div class="feature-image"><svg viewBox="0 0 240 180" fill="none"><rect width="240" height="180" fill="#F5F5F5"/><rect x="30" y="15" width="180" height="150" rx="6" fill="white" stroke="#e0e0e0"/><text x="50" y="38" font-family="Barlow Semi Condensed" font-size="10" font-weight="600" fill="#0E043A" letter-spacing=".1em">PDCA CYCLE</text><circle cx="120" cy="100" r="45" fill="none" stroke="#eee" stroke-width="8"/><path d="M120 55 A45 45 0 0 1 165 100" stroke="#0E043A" stroke-width="8" stroke-linecap="round"/><path d="M165 100 A45 45 0 0 1 120 145" stroke="#FF6300" stroke-width="8" stroke-linecap="round"/><path d="M120 145 A45 45 0 0 1 75 100" stroke="#FF3600" stroke-width="8" stroke-linecap="round" opacity=".6"/><path d="M75 100 A45 45 0 0 1 120 55" stroke="#0E043A" stroke-width="8" stroke-linecap="round" opacity=".3"/><text x="120" y="52" font-size="9" fill="#0E043A" text-anchor="middle" font-weight="700">Plan</text><text x="172" y="104" font-size="9" fill="#FF6300" text-anchor="middle" font-weight="700">Do</text><text x="120" y="155" font-size="9" fill="#FF3600" text-anchor="middle" font-weight="700">Check</text><text x="68" y="104" font-size="9" fill="#0E043A" text-anchor="middle" font-weight="700" opacity=".5">Act</text><circle cx="120" cy="100" r="20" fill="#0E043A"/><text x="120" y="104" font-family="Barlow Semi Condensed" font-size="14" fill="white" text-anchor="middle" font-weight="700">UP</text></svg></div>
+        <div class="feature-image"><img src="https://images.unsplash.com/photo-1686061593213-98dad7c599b9?w=600&h=400&fit=crop&auto=format&q=80&crop=entropy" alt="データ分析に基づくPDCA改善"></div>
         <div class="feature-content">
           <div class="feature-num">FEATURE 06</div>
           <h3>データ分析に基づくPDCA改善</h3>
@@ -625,6 +567,7 @@ ul{list-style:none}
       <div class="case-card">
         <div class="case-header"><div class="case-tag">海産物</div><h3>北海道 A市</h3></div>
         <div class="case-body">
+          <img src="https://images.unsplash.com/photo-1575872058841-955be84be5e7?w=600&h=400&fit=crop&auto=format&q=80" alt="新鮮な海産物" style="width:100%;height:160px;object-fit:cover;margin-bottom:20px">
           <div class="case-result"><div class="num">350<small>%</small></div><div class="label">寄附額UP</div></div>
           <div class="case-details">
             <div class="case-detail">海産物の返礼品ページを全面リニューアル</div>
@@ -636,6 +579,7 @@ ul{list-style:none}
       <div class="case-card">
         <div class="case-header"><div class="case-tag">畜産品</div><h3>九州 B市</h3></div>
         <div class="case-body">
+          <img src="https://images.unsplash.com/photo-1668616814977-05202080759c?w=600&h=400&fit=crop&auto=format&q=80" alt="和牛" style="width:100%;height:160px;object-fit:cover;margin-bottom:20px">
           <div class="case-result"><div class="num">500<small>%</small></div><div class="label">寄附額UP</div></div>
           <div class="case-details">
             <div class="case-detail">ブランド牛の魅力を伝えるストーリー設計</div>
@@ -647,6 +591,7 @@ ul{list-style:none}
       <div class="case-card">
         <div class="case-header"><div class="case-tag">工芸品</div><h3>東北 C市</h3></div>
         <div class="case-body">
+          <img src="https://images.unsplash.com/photo-1682147026652-d4ea9fb76efd?w=600&h=400&fit=crop&auto=format&q=80&crop=center" alt="日本の伝統工芸品" style="width:100%;height:160px;object-fit:cover;margin-bottom:20px">
           <div class="case-result"><div class="num">200<small>%</small></div><div class="label">寄附額UP</div></div>
           <div class="case-details">
             <div class="case-detail">伝統工芸品のブランディング強化</div>
