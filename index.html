@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rakutenふるさと納税 専門運用支援サービス | CARDS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* === Reset === */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Noto Sans JP",sans-serif;color:#231815;line-height:1.44;letter-spacing:.05em;background:#fff;-webkit-text-size-adjust:100%;font-feature-settings:"palt"}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit;transition:opacity .3s}
+a:hover{opacity:.7}
+ul{list-style:none}
+
+/* === Layout === */
+.svc-inner{width:100%;max-width:1206px;margin:0 auto;padding:0 48px}
+@media(max-width:767px){.svc-inner{max-width:500px;padding:0 20px}}
+
+/* === Colors === */
+:root{
+  --navy:#0E043A;
+  --navy-deep:#001A7F;
+  --orange:#FF6300;
+  --orange-end:#E93A00;
+  --red:#FF3600;
+  --text:#231815;
+  --text-light:#666;
+  --bg-gray:#F5F5F5;
+  --white:#fff;
+}
+
+/* === Header === */
+.header{position:fixed;top:0;left:0;width:100%;z-index:100;background:#fff;border-bottom:1px solid #eee;height:80px;display:flex;align-items:center}
+@media(min-width:768px){.header{width:calc(100% - 330px)}}
+.header-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1206px;margin:0 auto;padding:0 48px}
+@media(max-width:767px){.header-inner{padding:0 20px}}
+.header-logo{display:flex;align-items:center;gap:12px}
+.header-logo img{height:28px}
+.header-logo-text{font-family:"Barlow Semi Condensed",sans-serif;font-size:22px;font-weight:700;color:var(--navy);letter-spacing:.02em}
+.header-logo-sub{font-size:10px;color:var(--text-light);display:block;letter-spacing:.04em}
+.header-nav{display:flex;align-items:center;gap:28px}
+@media(max-width:900px){.header-nav{display:none}}
+.header-nav a{font-size:13px;font-weight:500;color:var(--text);letter-spacing:.05em}
+.header-contact{font-size:13px;font-weight:700;color:var(--navy-deep);letter-spacing:.05em;display:flex;align-items:center;gap:6px}
+
+/* === Side Form (PC) === */
+.side-form{display:none}
+@media(min-width:768px){
+  .side-form{display:block;position:fixed;top:0;right:0;z-index:1001;width:330px;height:100vh;background:var(--navy-deep);overflow-y:auto}
+}
+.side-form-header{display:flex;align-items:center;height:80px;background:linear-gradient(90deg,#FF6300,#D43300);padding:10px 26px}
+.side-form-header-text{font-size:18px;font-weight:700;color:#fff;line-height:1.5;letter-spacing:.1em}
+.side-form-body{padding:34px 34px 0}
+.side-form-field{margin-bottom:26px}
+.side-form-label{display:flex;align-items:center;justify-content:space-between;font-size:14px;font-weight:700;color:#fff;line-height:1.5;letter-spacing:.05em;margin-bottom:10px}
+.side-form-req{display:inline-flex;align-items:center;justify-content:center;height:21px;padding:0 8px;background:#D43301;font-size:12px;font-weight:700;color:#fff;letter-spacing:0}
+.side-form-input{width:100%;height:38px;padding:0 12px;background:#fff;border:none;border-radius:2px;font-size:14px;font-family:"Noto Sans JP",sans-serif;color:var(--text)}
+.side-form-input::placeholder{color:#bababa}
+.side-form-textarea{width:100%;height:100px;padding:10px 12px;background:#fff;border:none;border-radius:2px;font-size:14px;font-family:"Noto Sans JP",sans-serif;color:var(--text);resize:vertical}
+.side-form-submit{margin-top:20px;margin-bottom:34px}
+.side-form-submit-btn{width:100%;height:56px;border:none;border-radius:50px;background:linear-gradient(90deg,var(--orange),var(--orange-end));font-size:15px;font-weight:700;color:#fff;letter-spacing:.05em;cursor:pointer;font-family:"Noto Sans JP",sans-serif;transition:opacity .3s}
+.side-form-submit-btn:hover{opacity:.85}
+.side-form-note{font-size:11px;color:rgba(255,255,255,.6);text-align:center;margin-top:12px;line-height:1.6}
+
+/* === Main container === */
+.main-content{margin-right:0}
+@media(min-width:768px){.main-content{margin-right:330px}}
+
+/* === Section common === */
+.section{padding:80px 0}
+@media(min-width:768px){.section{padding:120px 0}}
+.section--gray{background:var(--bg-gray)}
+.section-heading{font-size:20px;font-weight:700;color:var(--navy);text-align:center;line-height:1.475;letter-spacing:.1em}
+@media(min-width:768px){.section-heading{font-size:40px;line-height:1.375}}
+.section-heading .hl{color:var(--red)}
+.section-sub{font-size:14px;color:var(--text-light);text-align:center;margin-top:16px;line-height:1.8;letter-spacing:.05em}
+@media(min-width:768px){.section-sub{font-size:16px;margin-top:20px}}
+
+/* === CTA Buttons === */
+.cta-group{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:10px;width:330px;max-width:100%;height:74px;font-size:17px;font-weight:700;color:#fff;text-align:center;line-height:1.5;letter-spacing:.02em;border-radius:100px;border:none;cursor:pointer;font-family:"Noto Sans JP",sans-serif;transition:opacity .3s}
+@media(min-width:768px){.btn{height:82px;font-size:18px;letter-spacing:.1em}}
+.btn:hover{opacity:.85}
+.btn--orange{background:linear-gradient(90deg,var(--orange),var(--orange-end))}
+.btn--white{background:#fff;color:var(--text)}
+.btn--navy{background:linear-gradient(90deg,#001A7F 0%,#001878 18.8%,#011369 43.4%,#030B4E 71.22%,#05002A 100%);color:#fff}
+.btn--small{width:280px;height:64px;font-size:15px}
+
+/* === FV (Hero) === */
+.fv{padding:120px 0 60px;background:var(--bg-gray);position:relative}
+@media(min-width:768px){.fv{padding:140px 0 80px}}
+.fv-inner{display:flex;flex-direction:column;gap:40px;align-items:center}
+@media(min-width:768px){.fv-inner{flex-direction:row;gap:48px;align-items:center}}
+.fv-text{flex:1}
+.fv-label{display:inline-block;font-family:"Barlow Semi Condensed",sans-serif;font-size:14px;font-weight:500;color:var(--navy-deep);letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px}
+.fv h1{font-size:24px;font-weight:900;line-height:1.5;color:var(--navy);letter-spacing:.08em}
+@media(min-width:768px){.fv h1{font-size:36px}}
+.fv h1 .hl{color:var(--red)}
+.fv-desc{font-size:14px;color:var(--text);margin-top:20px;line-height:1.9;letter-spacing:.05em}
+@media(min-width:768px){.fv-desc{font-size:16px}}
+.fv-image{flex:1;max-width:480px}
+.fv-image-box{background:#fff;border-radius:12px;padding:32px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.fv-stats{display:flex;gap:24px;margin-top:32px;flex-wrap:wrap}
+.fv-stat{text-align:center;flex:1;min-width:100px}
+.fv-stat-num{font-family:"Barlow Semi Condensed",sans-serif;font-size:42px;font-weight:700;color:var(--navy);line-height:1}
+.fv-stat-num small{font-size:18px}
+.fv-stat-label{font-size:12px;color:var(--text-light);margin-top:4px;letter-spacing:.05em}
+
+/* === Clients === */
+.clients{height:80px;background:#fff;border-bottom:1px solid var(--navy);display:flex;align-items:center;overflow:hidden}
+.clients-track{display:flex;gap:40px;animation:scroll 20s linear infinite;align-items:center}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.clients-item{font-family:"Barlow Semi Condensed",sans-serif;font-size:14px;font-weight:500;color:var(--text-light);white-space:nowrap;letter-spacing:.05em;opacity:.5}
+
+/* === Problems === */
+.problems-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:48px}
+@media(min-width:768px){.problems-grid{grid-template-columns:repeat(3,1fr);gap:24px}}
+.problem-card{background:#fff;border-radius:0;padding:28px 24px;border:1px solid #e8e8e8;position:relative}
+.section--gray .problem-card{background:#fff}
+.problem-num{font-family:"Barlow Semi Condensed",sans-serif;font-size:32px;font-weight:700;color:var(--navy);opacity:.2;line-height:1;margin-bottom:12px}
+.problem-card h3{font-size:15px;font-weight:700;color:var(--text);line-height:1.6;margin-bottom:8px}
+.problem-card p{font-size:13px;color:var(--text-light);line-height:1.8}
+
+/* === About === */
+.about-inner{display:flex;flex-direction:column;gap:40px;align-items:center}
+@media(min-width:768px){.about-inner{flex-direction:row;gap:60px}}
+.about-stats{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.about-stat{background:var(--bg-gray);padding:32px 20px;text-align:center;border-radius:0}
+.about-stat .num{font-family:"Barlow Semi Condensed",sans-serif;font-size:48px;font-weight:700;color:var(--navy);line-height:1}
+.about-stat .num small{font-size:16px;font-weight:500}
+.about-stat .label{font-size:12px;color:var(--text-light);margin-top:8px;letter-spacing:.05em}
+.about-text{flex:1}
+.about-text h2{font-size:20px;font-weight:700;color:var(--navy);line-height:1.7;letter-spacing:.08em}
+@media(min-width:768px){.about-text h2{font-size:28px}}
+.about-text h2 .hl{color:var(--red)}
+.about-text p{font-size:14px;color:var(--text);line-height:1.9;margin-top:20px;letter-spacing:.05em}
+
+/* === Features === */
+.feature-list{margin-top:60px;display:flex;flex-direction:column;gap:48px}
+.feature-item{display:flex;flex-direction:column;gap:24px;align-items:center}
+@media(min-width:768px){.feature-item{flex-direction:row;gap:48px}}
+@media(min-width:768px){.feature-item:nth-child(even){flex-direction:row-reverse}}
+.feature-image{flex:1;background:var(--bg-gray);border-radius:0;overflow:hidden;min-height:200px;display:flex;align-items:center;justify-content:center;padding:40px}
+@media(min-width:768px){.feature-image{min-height:280px}}
+.feature-image svg{width:80px;height:80px;opacity:.3}
+.feature-content{flex:1}
+.feature-num{font-family:"Barlow Semi Condensed",sans-serif;font-size:14px;font-weight:700;color:var(--red);letter-spacing:.15em;margin-bottom:12px}
+.feature-content h3{font-size:18px;font-weight:700;color:var(--navy);line-height:1.6;letter-spacing:.06em;margin-bottom:12px}
+@media(min-width:768px){.feature-content h3{font-size:22px}}
+.feature-content p{font-size:14px;color:var(--text);line-height:1.9;letter-spacing:.05em}
+
+/* === CTA Section === */
+.cta-section{padding:60px 0;background:var(--navy);text-align:center}
+.cta-section p{font-size:16px;font-weight:700;color:#fff;letter-spacing:.08em;margin-bottom:8px}
+@media(min-width:768px){.cta-section p{font-size:22px}}
+.cta-section .sub{font-size:14px;font-weight:400;color:rgba(255,255,255,.7);margin-bottom:0}
+
+/* === Flow === */
+.flow-steps{display:flex;flex-direction:column;gap:0;margin-top:48px;counter-reset:step}
+@media(min-width:768px){.flow-steps{flex-direction:row;gap:0}}
+.flow-step{flex:1;padding:32px 20px;background:#fff;border:1px solid #e8e8e8;position:relative;text-align:center}
+@media(min-width:768px){.flow-step{border-right:none}.flow-step:last-child{border-right:1px solid #e8e8e8}}
+.flow-step-num{font-family:"Barlow Semi Condensed",sans-serif;font-size:12px;font-weight:700;color:var(--red);letter-spacing:.15em;margin-bottom:8px}
+.flow-step h4{font-size:15px;font-weight:700;color:var(--navy);letter-spacing:.06em;margin-bottom:8px}
+.flow-step p{font-size:12px;color:var(--text-light);line-height:1.7}
+.flow-step-arrow{display:none}
+@media(min-width:768px){
+  .flow-step-arrow{display:block;position:absolute;right:-12px;top:50%;transform:translateY(-50%);z-index:1;width:0;height:0;border-style:solid;border-width:12px 0 12px 12px;border-color:transparent transparent transparent var(--navy)}
+  .flow-step:last-child .flow-step-arrow{display:none}
+}
+
+/* === Cases === */
+.cases-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:48px}
+@media(min-width:768px){.cases-grid{grid-template-columns:repeat(3,1fr)}}
+.case-card{background:#fff;overflow:hidden;border:1px solid #e8e8e8}
+.case-header{padding:20px 24px;background:var(--navy);color:#fff;text-align:center}
+.case-tag{font-size:11px;background:rgba(255,255,255,.2);padding:3px 12px;display:inline-block;margin-bottom:6px;letter-spacing:.05em}
+.case-header h3{font-size:16px;font-weight:700;letter-spacing:.08em}
+.case-body{padding:28px 24px}
+.case-result{text-align:center;margin-bottom:20px}
+.case-result .num{font-family:"Barlow Semi Condensed",sans-serif;font-size:56px;font-weight:700;color:var(--red);line-height:1}
+.case-result .num small{font-size:20px}
+.case-result .label{font-size:13px;color:var(--text-light);margin-top:6px}
+.case-details{display:flex;flex-direction:column;gap:8px}
+.case-detail{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text);line-height:1.7}
+.case-detail::before{content:"";width:6px;height:6px;background:var(--navy);border-radius:50%;margin-top:7px;flex-shrink:0}
+
+/* === Comparison === */
+.comparison-table{width:100%;border-collapse:collapse;margin-top:48px}
+.comparison-table thead th{padding:20px 12px;font-size:14px;font-weight:700;text-align:center;background:var(--bg-gray);border:1px solid #e0e0e0;color:var(--text);vertical-align:middle}
+.comparison-table thead th:first-child{text-align:left;width:20%}
+.comparison-table thead th.hl{background:var(--navy);color:#fff;font-size:16px}
+.comparison-table tbody td{padding:16px 12px;text-align:center;border:1px solid #e0e0e0;font-size:14px;color:var(--text);vertical-align:middle}
+.comparison-table tbody td:first-child{text-align:left;font-weight:600;background:var(--bg-gray)}
+.comparison-table tbody td.hl{background:rgba(14,4,58,.04);font-weight:700;color:var(--navy)}
+.mark-o{color:var(--red);font-size:20px;font-weight:700}
+.mark-t{color:#c9a84c;font-size:16px}
+.mark-x{color:#ccc;font-size:16px}
+
+/* === Consultant === */
+.consultant-inner{display:flex;flex-direction:column;gap:40px;margin-top:48px}
+@media(min-width:768px){.consultant-inner{flex-direction:row;gap:48px}}
+.consultant-photo{flex:0 0 280px;height:360px;background:var(--bg-gray);display:flex;align-items:center;justify-content:center}
+.consultant-photo svg{width:100px;height:100px;fill:var(--navy);opacity:.15}
+.consultant-info{flex:1}
+.consultant-info .role{font-size:12px;color:var(--red);font-weight:700;letter-spacing:.1em;margin-bottom:8px}
+.consultant-info .name{font-size:28px;font-weight:900;color:var(--navy);letter-spacing:.08em}
+.consultant-info .name-en{font-family:"Barlow Semi Condensed",sans-serif;font-size:14px;color:var(--text-light);margin-top:2px;letter-spacing:.1em}
+.consultant-info .bio{font-size:14px;color:var(--text);line-height:2;margin-top:20px;letter-spacing:.05em}
+.consultant-sns{display:flex;gap:12px;margin-top:20px}
+.consultant-sns a{width:36px;height:36px;border-radius:50%;background:var(--bg-gray);display:flex;align-items:center;justify-content:center;transition:background .3s}
+.consultant-sns a:hover{background:var(--navy);opacity:1}
+.consultant-sns a:hover svg{fill:#fff}
+.consultant-sns svg{width:16px;height:16px;fill:var(--text)}
+.consultant-highlights{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+@media(max-width:767px){.consultant-highlights{grid-template-columns:repeat(2,1fr)}}
+.consultant-hl{background:var(--bg-gray);padding:20px 12px;text-align:center}
+.consultant-hl .num{font-family:"Barlow Semi Condensed",sans-serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1}
+.consultant-hl .num small{font-size:13px;font-weight:500}
+.consultant-hl .label{font-size:11px;color:var(--text-light);margin-top:4px}
+
+/* === Pricing === */
+.pricing-card{max-width:640px;margin:48px auto 0;border:2px solid var(--navy);padding:48px 40px;text-align:center}
+@media(max-width:767px){.pricing-card{padding:32px 20px}}
+.pricing-card .plan-label{font-size:14px;color:var(--red);font-weight:700;letter-spacing:.1em;margin-bottom:16px}
+.pricing-card .price{font-family:"Barlow Semi Condensed",sans-serif;font-size:64px;font-weight:700;color:var(--navy);line-height:1}
+.pricing-card .price small{font-size:18px;font-weight:500;color:var(--text);letter-spacing:.05em}
+.pricing-card .price-note{font-size:14px;color:var(--text-light);margin-top:16px;line-height:1.8}
+.pricing-includes{text-align:left;margin:32px 0;border-top:1px solid #e8e8e8}
+.pricing-includes li{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid #e8e8e8;font-size:14px;color:var(--text);letter-spacing:.05em}
+.pricing-includes li::before{content:"\2713";font-weight:700;color:var(--red);font-size:14px;flex-shrink:0}
+
+/* === FAQ === */
+.faq-list{max-width:800px;margin:48px auto 0;display:flex;flex-direction:column;gap:0}
+.faq-item{border-bottom:1px solid #e0e0e0}
+.faq-item:first-child{border-top:1px solid #e0e0e0}
+.faq-q{padding:20px 0;font-size:15px;font-weight:700;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:16px;line-height:1.6;letter-spacing:.05em}
+.faq-q::before{content:"Q";font-size:14px;font-weight:700;color:#fff;background:var(--navy);width:32px;height:32px;border-radius:0;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.faq-q::after{content:"+";margin-left:auto;font-size:20px;color:var(--navy);flex-shrink:0;transition:transform .3s}
+.faq-item.active .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-item.active .faq-a{max-height:500px}
+.faq-a-inner{padding:0 0 20px 48px}
+.faq-a p{font-size:14px;color:var(--text-light);line-height:1.9;letter-spacing:.05em}
+
+/* === Contact (bottom) === */
+.contact-section{padding:80px 0;background:var(--navy)}
+@media(min-width:768px){.contact-section{padding:120px 0}}
+.contact-section .section-heading{color:#fff}
+.contact-section .section-sub{color:rgba(255,255,255,.7)}
+.contact-form{max-width:640px;margin:40px auto 0;background:#fff;padding:48px 40px;border-radius:0}
+@media(max-width:767px){.contact-form{padding:32px 20px}}
+.form-row{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:768px){.form-row{grid-template-columns:1fr 1fr}}
+.form-group{margin-bottom:20px}
+.form-label{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:.05em}
+.form-req{font-size:11px;font-weight:700;color:#fff;background:#D43301;padding:2px 8px;letter-spacing:0}
+.form-input,.form-select,.form-textarea{width:100%;padding:12px 14px;border:1px solid #d0d0d0;border-radius:0;font-size:14px;font-family:"Noto Sans JP",sans-serif;color:var(--text);background:var(--bg-gray);transition:border-color .3s}
+.form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--navy);background:#fff}
+.form-textarea{height:120px;resize:vertical}
+.form-submit{text-align:center;margin-top:28px}
+.form-submit-btn{width:100%;max-width:400px;height:64px;border:none;border-radius:100px;background:linear-gradient(90deg,var(--orange),var(--orange-end));font-size:17px;font-weight:700;color:#fff;cursor:pointer;font-family:"Noto Sans JP",sans-serif;letter-spacing:.08em;transition:opacity .3s}
+.form-submit-btn:hover{opacity:.85}
+.form-submit-note{font-size:12px;color:var(--text-light);margin-top:12px}
+
+/* === Footer === */
+.footer{padding:48px 0 24px;background:#1a1a1a;color:rgba(255,255,255,.6)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:20px}
+.footer-logo{font-family:"Barlow Semi Condensed",sans-serif;font-size:20px;font-weight:700;color:#fff}
+.footer-logo small{font-size:11px;display:block;color:rgba(255,255,255,.4);font-weight:400}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:12px;letter-spacing:.05em}
+.footer-links a:hover{color:#fff;opacity:1}
+.footer-sns{display:flex;gap:10px}
+.footer-sns a{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center}
+.footer-sns a:hover{background:var(--navy-deep);opacity:1}
+.footer-sns svg{width:14px;height:14px;fill:rgba(255,255,255,.6)}
+.footer-copy{text-align:center;font-size:11px;color:rgba(255,255,255,.3)}
+.footer-address{font-size:12px;color:rgba(255,255,255,.4);margin-top:4px}
+
+/* === SP Bottom CTA === */
+.sp-bottom-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:100;gap:0}
+@media(min-width:768px){.sp-bottom-cta{display:none}}
+.sp-bottom-cta a{flex:1;display:flex;align-items:center;justify-content:center;height:60px;font-size:14px;font-weight:700;color:#fff;text-align:center;letter-spacing:.05em}
+.sp-bottom-cta a:first-child{background:linear-gradient(90deg,var(--orange),var(--orange-end))}
+.sp-bottom-cta a:last-child{background:var(--navy-deep)}
+.sp-bottom-cta a:hover{opacity:1}
+</style>
+</head>
+<body>
+
+<!-- === Side Form (PC) === -->
+<div class="side-form">
+  <div class="side-form-header">
+    <div class="side-form-header-text">まずはお気軽に<br>ご相談ください</div>
+  </div>
+  <div class="side-form-body">
+    <div class="side-form-field">
+      <div class="side-form-label">お名前 <span class="side-form-req">必須</span></div>
+      <input type="text" class="side-form-input" placeholder="山田 太郎">
+    </div>
+    <div class="side-form-field">
+      <div class="side-form-label">メールアドレス <span class="side-form-req">必須</span></div>
+      <input type="email" class="side-form-input" placeholder="info@example.lg.jp">
+    </div>
+    <div class="side-form-field">
+      <div class="side-form-label">電話番号</div>
+      <input type="tel" class="side-form-input" placeholder="03-1234-5678">
+    </div>
+    <div class="side-form-field">
+      <div class="side-form-label">自治体名・団体名 <span class="side-form-req">必須</span></div>
+      <input type="text" class="side-form-input" placeholder="○○市役所">
+    </div>
+    <div class="side-form-field">
+      <div class="side-form-label">ご相談内容</div>
+      <textarea class="side-form-textarea" placeholder="現在のお悩みをお聞かせください"></textarea>
+    </div>
+    <div class="side-form-submit">
+      <button class="side-form-submit-btn">無料で相談する</button>
+      <p class="side-form-note">2営業日以内にご連絡いたします</p>
+    </div>
+  </div>
+</div>
+
+<!-- === Main === -->
+<div class="main-content">
+
+<!-- Header -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="header-logo">
+      <span class="header-logo-text">CARDS<span class="header-logo-sub">ECマーケティング支援</span></span>
+    </a>
+    <nav class="header-nav">
+      <a href="#problems">お悩み</a>
+      <a href="#features">特徴</a>
+      <a href="#cases">実績</a>
+      <a href="#pricing">料金</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="header-contact">CONTACT</a>
+    </nav>
+  </div>
+</header>
+
+<!-- FV -->
+<section class="fv">
+  <div class="svc-inner fv-inner">
+    <div class="fv-text">
+      <div class="fv-label">Rakuten Furusato Nozei</div>
+      <h1>Rakutenふるさと納税の<br><span class="hl">寄附額を最大化</span>する<br>専門運用支援サービス</h1>
+      <p class="fv-desc">ふるさと納税市場に精通したプロが、返礼品の企画から<br>広告運用まで一気通貫で支援します。</p>
+      <div class="cta-group" style="justify-content:flex-start">
+        <a href="#contact" class="btn btn--orange btn--small">無料で資料ダウンロード</a>
+        <a href="#contact" class="btn btn--white btn--small">無料で相談する</a>
+      </div>
+    </div>
+    <div class="fv-image">
+      <div class="fv-image-box">
+        <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:16px;letter-spacing:.06em">ワンストップ支援</div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text)"><span style="color:var(--red);font-weight:700">&#10003;</span> 返礼品の企画・開発支援</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text)"><span style="color:var(--red);font-weight:700">&#10003;</span> 商品ページ制作・最適化</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text)"><span style="color:var(--red);font-weight:700">&#10003;</span> RPP広告・CPA広告運用</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text)"><span style="color:var(--red);font-weight:700">&#10003;</span> イベント戦略立案・実行</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text)"><span style="color:var(--red);font-weight:700">&#10003;</span> データ分析・継続改善</div>
+        </div>
+      </div>
+      <div class="fv-stats">
+        <div class="fv-stat"><div class="fv-stat-num">50<small>+</small></div><div class="fv-stat-label">支援自治体数</div></div>
+        <div class="fv-stat"><div class="fv-stat-num">200<small>%</small></div><div class="fv-stat-label">平均寄附額UP</div></div>
+        <div class="fv-stat"><div class="fv-stat-num">97<small>%</small></div><div class="fv-stat-label">継続率</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Clients -->
+<div class="clients">
+  <div class="clients-track">
+    <span class="clients-item">ecforce</span>
+    <span class="clients-item">blends</span>
+    <span class="clients-item">immue</span>
+    <span class="clients-item">groove</span>
+    <span class="clients-item">世界へボカン</span>
+    <span class="clients-item">COUNTER</span>
+    <span class="clients-item">HONE</span>
+    <span class="clients-item">Rocal</span>
+    <span class="clients-item">ecforce</span>
+    <span class="clients-item">blends</span>
+    <span class="clients-item">immue</span>
+    <span class="clients-item">groove</span>
+    <span class="clients-item">世界へボカン</span>
+    <span class="clients-item">COUNTER</span>
+    <span class="clients-item">HONE</span>
+    <span class="clients-item">Rocal</span>
+  </div>
+</div>
+
+<!-- Problems -->
+<section class="section section--gray" id="problems">
+  <div class="svc-inner">
+    <h2 class="section-heading">こんな<span class="hl">お悩み</span>はありませんか？</h2>
+    <div class="problems-grid">
+      <div class="problem-card">
+        <div class="problem-num">01</div>
+        <h3>寄附額が伸び悩んでいる</h3>
+        <p>他の自治体と比較して寄附額が伸びず、改善の打ち手がわからない状態が続いている。</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">02</div>
+        <h3>返礼品の魅力が伝わらない</h3>
+        <p>地域の特産品は良いものなのに、商品ページでの見せ方がわからず寄附に繋がらない。</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">03</div>
+        <h3>楽天の広告運用がわからない</h3>
+        <p>RPP広告やCPA広告の仕組みが複雑で、適切な予算配分や運用ができていない。</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">04</div>
+        <h3>他の自治体と差別化できない</h3>
+        <p>似たような返礼品が並ぶ中で、自治体独自の強みを打ち出す戦略が立てられない。</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">05</div>
+        <h3>イベント活用ができていない</h3>
+        <p>スーパーSALEやお買い物マラソンなど、楽天独自のイベントを活かした施策が打てない。</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">06</div>
+        <h3>運用を任せられる人材がいない</h3>
+        <p>ふるさと納税の運用に詳しい担当者がおらず、日々の更新や改善が後回しになっている。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="svc-inner">
+    <p>まずはお気軽にご相談ください</p>
+    <p class="sub">ふるさと納税の運用にお悩みの自治体・事業者様を全力でサポートします</p>
+    <div class="cta-group">
+      <a href="#contact" class="btn btn--orange">無料で資料ダウンロード</a>
+      <a href="#contact" class="btn btn--white">無料で相談する</a>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section" id="about">
+  <div class="svc-inner about-inner">
+    <div class="about-stats">
+      <div class="about-stat"><div class="num">100<small>社+</small></div><div class="label">EC支援実績</div></div>
+      <div class="about-stat"><div class="num">97<small>%</small></div><div class="label">継続率</div></div>
+      <div class="about-stat"><div class="num">60<small>億円</small></div><div class="label">売上貢献規模</div></div>
+      <div class="about-stat"><div class="num">0<small>件</small></div><div class="label">売上低下</div></div>
+    </div>
+    <div class="about-text">
+      <h2><span class="hl">CARDS</span>は、<br>Rakutenふるさと納税の<br>運用支援に強い<br><span class="hl">ECマーケティング支援会社</span>です。</h2>
+      <p>楽天市場でのEC運用支援で培った100社以上の実績とノウハウを活かし、ふるさと納税に特化した専門支援を提供しています。</p>
+      <p style="margin-top:12px">返礼品の企画・ページ制作から広告運用、イベント戦略まで、寄附額最大化に必要なすべてをワンストップでサポートします。</p>
+      <div class="cta-group" style="justify-content:flex-start">
+        <a href="#contact" class="btn btn--orange btn--small">無料で資料ダウンロード</a>
+        <a href="#contact" class="btn btn--navy btn--small">無料で相談する</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section section--gray" id="features">
+  <div class="svc-inner">
+    <h2 class="section-heading">CARDSの<span class="hl">ふるさと納税運用支援</span>の特徴</h2>
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-image"><svg viewBox="0 0 80 80" fill="none" stroke="var(--navy)" stroke-width="1.5"><circle cx="40" cy="40" r="30"/><path d="M40 25v15l10 10"/></svg></div>
+        <div class="feature-content">
+          <div class="feature-num">FEATURE 01</div>
+          <h3>ふるさと納税市場に特化した専門知識</h3>
+          <p>ふるさと納税市場のトレンド・制度変更・寄附者の行動パターンを熟知。一般的なEC支援とは異なる、ふるさと納税ならではの戦略を立案します。寄附者の検索キーワードや季節変動を踏まえた最適なアプローチをご提案。</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-image"><svg viewBox="0 0 80 80" fill="none" stroke="var(--navy)" stroke-width="1.5"><rect x="15" y="35" width="10" height="25" rx="1"/><rect x="35" y="25" width="10" height="35" rx="1"/><rect x="55" y="15" width="10" height="45" rx="1"/></svg></div>
+        <div class="feature-content">
+          <div class="feature-num">FEATURE 02</div>
+          <h3>100社以上のEC支援実績から得たノウハウ</h3>
+          <p>食品・日用品・工芸品など多ジャンルのEC運用実績を活かし、返礼品カテゴリに応じた最適な販売戦略をご提案。D2Cブランド支援で培った商品の魅力を最大化するノウハウが強みです。</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-image"><svg viewBox="0 0 80 80" fill="none" stroke="var(--navy)" stroke-width="1.5"><rect x="15" y="10" width="50" height="60" rx="3"/><line x1="25" y1="25" x2="55" y2="25"/><line x1="25" y1="35" x2="50" y2="35"/><line x1="25" y1="45" x2="45" y2="45"/></svg></div>
+        <div class="feature-content">
+          <div class="feature-num">FEATURE 03</div>
+          <h3>返礼品ページの企画・制作・最適化</h3>
+          <p>寄附者の心を動かす商品ページを制作。写真の見せ方・キャッチコピー・レビュー活用・SEO対策まで、コンバージョンを最大化するページ設計を行います。</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-image"><svg viewBox="0 0 80 80" fill="none" stroke="var(--navy)" stroke-width="1.5"><circle cx="40" cy="40" r="25"/><circle cx="40" cy="40" r="15"/><circle cx="40" cy="40" r="5"/></svg></div>
+        <div class="feature-content">
+          <div class="feature-num">FEATURE 04</div>
+          <h3>RPP広告・CPA広告の運用代行</h3>
+          <p>楽天ふるさと納税における広告運用を完全代行。予算配分の最適化・入札調整・キーワード選定まで、ROASを最大化する広告戦略を実行します。</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-image"><svg viewBox="0 0 80 80" fill="none" stroke="var(--navy)" stroke-width="1.5"><polygon points="40,12 48,32 70,32 52,46 58,66 40,54 22,66 28,46 10,32 32,32"/></svg></div>
+        <div class="feature-content">
+          <div class="feature-num">FEATURE 05</div>
+          <h3>スーパーSALE・お買い物マラソン等イベント戦略</h3>
+          <p>楽天独自の大型イベントに合わせた戦略的な施策を立案・実行。ポイント倍率・クーポン設計・事前告知まで、イベント期間中の寄附額を最大化します。</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-image"><svg viewBox="0 0 80 80" fill="none" stroke="var(--navy)" stroke-width="1.5"><polyline points="10,60 30,35 45,45 70,15"/><circle cx="70" cy="15" r="4" fill="var(--navy)"/></svg></div>
+        <div class="feature-content">
+          <div class="feature-num">FEATURE 06</div>
+          <h3>データ分析に基づくPDCA改善</h3>
+          <p>アクセス解析・寄附データ・広告効果を定量的に分析し、毎月の改善提案を実施。感覚ではなくデータドリブンな運用で、継続的に寄附額を伸ばします。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="svc-inner">
+    <p>ふるさと納税の<span style="color:var(--orange)">寄附額を最大化</span>しませんか？</p>
+    <p class="sub">まずは無料相談で、貴自治体の課題をお聞かせください</p>
+    <div class="cta-group">
+      <a href="#contact" class="btn btn--orange">無料で資料ダウンロード</a>
+      <a href="#contact" class="btn btn--white">無料で相談する</a>
+    </div>
+  </div>
+</section>
+
+<!-- Flow -->
+<section class="section" id="flow">
+  <div class="svc-inner">
+    <h2 class="section-heading">サービスの<span class="hl">流れ</span></h2>
+    <div class="flow-steps">
+      <div class="flow-step"><div class="flow-step-num">STEP 01</div><h4>無料ヒアリング</h4><p>現状の課題や目標をお伺いし、支援の方向性を確認します。</p><div class="flow-step-arrow"></div></div>
+      <div class="flow-step"><div class="flow-step-num">STEP 02</div><h4>市場調査・競合分析</h4><p>同カテゴリの競合自治体を調査し、差別化ポイントを特定します。</p><div class="flow-step-arrow"></div></div>
+      <div class="flow-step"><div class="flow-step-num">STEP 03</div><h4>戦略立案・返礼品企画</h4><p>データに基づく販売戦略と返礼品ラインナップを提案します。</p><div class="flow-step-arrow"></div></div>
+      <div class="flow-step"><div class="flow-step-num">STEP 04</div><h4>ページ制作・広告運用</h4><p>商品ページを制作し、広告運用を開始。寄附獲得を加速します。</p><div class="flow-step-arrow"></div></div>
+      <div class="flow-step"><div class="flow-step-num">STEP 05</div><h4>効果検証・継続改善</h4><p>月次レポートで成果を共有しPDCAで継続改善します。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Cases -->
+<section class="section section--gray" id="cases">
+  <div class="svc-inner">
+    <h2 class="section-heading">支援<span class="hl">実績</span>・事例</h2>
+    <div class="cases-grid">
+      <div class="case-card">
+        <div class="case-header"><div class="case-tag">海産物</div><h3>北海道 A市</h3></div>
+        <div class="case-body">
+          <div class="case-result"><div class="num">350<small>%</small></div><div class="label">寄附額UP</div></div>
+          <div class="case-details">
+            <div class="case-detail">海産物の返礼品ページを全面リニューアル</div>
+            <div class="case-detail">RPP広告の最適化でCPAを40%削減</div>
+            <div class="case-detail">スーパーSALE活用で月間寄附額が過去最高</div>
+          </div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-header"><div class="case-tag">畜産品</div><h3>九州 B市</h3></div>
+        <div class="case-body">
+          <div class="case-result"><div class="num">500<small>%</small></div><div class="label">寄附額UP</div></div>
+          <div class="case-details">
+            <div class="case-detail">ブランド牛の魅力を伝えるストーリー設計</div>
+            <div class="case-detail">定期便プランの導入でリピーター獲得</div>
+            <div class="case-detail">レビュー施策で口コミ評価4.8を達成</div>
+          </div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-header"><div class="case-tag">工芸品</div><h3>東北 C市</h3></div>
+        <div class="case-body">
+          <div class="case-result"><div class="num">200<small>%</small></div><div class="label">寄附額UP</div></div>
+          <div class="case-details">
+            <div class="case-detail">伝統工芸品のブランディング強化</div>
+            <div class="case-detail">ギフト需要に合わせた季節別施策展開</div>
+            <div class="case-detail">SNS連動でふるさと納税外からの流入増</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison -->
+<section class="section" id="comparison">
+  <div class="svc-inner">
+    <h2 class="section-heading">他社との<span class="hl">違い</span></h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>比較項目</th>
+          <th class="hl">CARDS</th>
+          <th>A社<br><small style="font-weight:400;font-size:11px;color:#999">中小規模向け</small></th>
+          <th>B社<br><small style="font-weight:400;font-size:11px;color:#999">大手向け</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>価格</td><td class="hl">月額30万円〜</td><td>月額15万円〜</td><td>月額80万円〜</td></tr>
+        <tr><td>ふるさと納税専門性</td><td class="hl"><span class="mark-o">&#9679;</span></td><td><span class="mark-t">&#9650;</span></td><td><span class="mark-t">&#9650;</span></td></tr>
+        <tr><td>対応範囲</td><td class="hl">企画〜運用まで一気通貫</td><td>広告運用のみ</td><td>戦略立案中心</td></tr>
+        <tr><td>返礼品企画・提案力</td><td class="hl"><span class="mark-o">&#9679;</span></td><td><span class="mark-x">&#9679;</span></td><td><span class="mark-t">&#9650;</span></td></tr>
+        <tr><td>広告運用代行</td><td class="hl"><span class="mark-o">&#9679;</span></td><td><span class="mark-o">&#9679;</span></td><td><span class="mark-x">&#9679;</span></td></tr>
+        <tr><td>データ分析・レポート</td><td class="hl"><span class="mark-o">&#9679;</span></td><td><span class="mark-t">&#9650;</span></td><td><span class="mark-o">&#9679;</span></td></tr>
+        <tr><td>担当者の質</td><td class="hl">EC経験豊富な専任</td><td>ジュニア担当者</td><td>分業制で担当変更あり</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="svc-inner">
+    <p>CARDSの強みを実感してください</p>
+    <p class="sub">無料相談で、具体的な改善プランをご提案します</p>
+    <div class="cta-group">
+      <a href="#contact" class="btn btn--orange">無料で資料ダウンロード</a>
+      <a href="#contact" class="btn btn--white">無料で相談する</a>
+    </div>
+  </div>
+</section>
+
+<!-- Consultant -->
+<section class="section section--gray" id="consultant">
+  <div class="svc-inner">
+    <h2 class="section-heading">担当<span class="hl">コンサルタント</span></h2>
+    <div class="consultant-inner">
+      <div class="consultant-photo">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div class="consultant-info">
+        <div class="role">代表コンサルタント</div>
+        <div class="name">猿川 哲朗</div>
+        <div class="name-en">Tetsuro Sarukawa</div>
+        <p class="bio">岩手県盛岡市出身。大手企業・ベンチャーでのマーケティング経験を経て独立。株式会社CARDS代表取締役。ECマーケティング支援において100社以上の実績を持ち、年商60億円規模の売上貢献を達成。楽天市場をはじめとするECモールでの運用ノウハウを活かし、ふるさと納税の寄附額最大化を支援しています。</p>
+        <div class="consultant-sns">
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" aria-label="Note"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></a>
+        </div>
+        <div class="consultant-highlights">
+          <div class="consultant-hl"><div class="num">100<small>社+</small></div><div class="label">EC支援実績</div></div>
+          <div class="consultant-hl"><div class="num">60<small>億円</small></div><div class="label">売上貢献規模</div></div>
+          <div class="consultant-hl"><div class="num">97<small>%</small></div><div class="label">継続率</div></div>
+          <div class="consultant-hl"><div class="num">10<small>年+</small></div><div class="label">EC業界経験</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="section" id="pricing">
+  <div class="svc-inner">
+    <h2 class="section-heading"><span class="hl">料金</span>プラン</h2>
+    <div class="pricing-card">
+      <div class="plan-label">ふるさと納税 専門運用支援</div>
+      <div class="price">30<small>万円（税別）/ 月〜</small></div>
+      <p class="price-note">規模やご要望に応じて最適なプランをご提案いたします。</p>
+      <ul class="pricing-includes">
+        <li>返礼品ページ企画・制作</li>
+        <li>RPP広告・CPA広告運用代行</li>
+        <li>イベント戦略立案・実行</li>
+        <li>月次データ分析・レポート</li>
+        <li>競合調査・市場分析</li>
+        <li>専任コンサルタントによる伴走支援</li>
+        <li>定例ミーティング（月2回）</li>
+      </ul>
+      <div class="cta-group">
+        <a href="#contact" class="btn btn--orange btn--small">無料で資料ダウンロード</a>
+        <a href="#contact" class="btn btn--navy btn--small">無料で相談する</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--gray" id="faq">
+  <div class="svc-inner">
+    <h2 class="section-heading">よくある<span class="hl">質問</span></h2>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q">ふるさと納税の運用経験がなくても大丈夫ですか？</div><div class="faq-a"><div class="faq-a-inner"><p>はい、大丈夫です。ふるさと納税の立ち上げから運用まで、経験豊富なコンサルタントが一からサポートいたします。これまでも運用未経験の自治体様を多数ご支援してきた実績がございます。</p></div></div></div>
+      <div class="faq-item"><div class="faq-q">最低契約期間はありますか？</div><div class="faq-a"><div class="faq-a-inner"><p>最低契約期間は6ヶ月からとなります。ふるさと納税は季節変動が大きいため、年間を通じたPDCA改善が成果に直結します。まずは半年間で基盤を構築し、継続的な成長を目指します。</p></div></div></div>
+      <div class="faq-item"><div class="faq-q">楽天以外のふるさと納税ポータルも対応可能ですか？</div><div class="faq-a"><div class="faq-a-inner"><p>現在はRakutenふるさと納税に特化した支援を提供しておりますが、他ポータルサイトとの併用戦略についてもアドバイスが可能です。まずはご相談ください。</p></div></div></div>
+      <div class="faq-item"><div class="faq-q">成果報酬プランはありますか？</div><div class="faq-a"><div class="faq-a-inner"><p>基本的には月額固定制ですが、寄附額に応じた成果報酬型のプランもご用意可能です。貴自治体の状況やご要望に応じて最適なプランをご提案いたします。</p></div></div></div>
+      <div class="faq-item"><div class="faq-q">どのくらいの期間で成果が出ますか？</div><div class="faq-a"><div class="faq-a-inner"><p>一般的に、ページ改善や広告最適化の効果は1〜2ヶ月で現れ始めます。3ヶ月目以降にはPDCA改善が回り、安定的な寄附額の増加が期待できます。</p></div></div></div>
+      <div class="faq-item"><div class="faq-q">小規模自治体でも対応可能ですか？</div><div class="faq-a"><div class="faq-a-inner"><p>もちろん可能です。小規模自治体ならではの強み（希少性・ストーリー性）を活かした戦略をご提案します。</p></div></div></div>
+      <div class="faq-item"><div class="faq-q">既存の返礼品の改善だけでも依頼できますか？</div><div class="faq-a"><div class="faq-a-inner"><p>はい、既存返礼品の商品ページ改善・写真撮影ディレクション・キーワード最適化など、部分的なご依頼も承っております。</p></div></div></div>
+      <div class="faq-item"><div class="faq-q">スーパーSALEの時だけのスポット依頼は可能ですか？</div><div class="faq-a"><div class="faq-a-inner"><p>スポットでのイベント対策支援も承っております。ただし、継続的な運用改善と組み合わせることで、より大きな成果が期待できます。</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact-section" id="contact">
+  <div class="svc-inner">
+    <h2 class="section-heading" style="color:#fff">お問い合わせ</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,.7)">ふるさと納税の運用についてお気軽にご相談ください。</p>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group"><div class="form-label">自治体名・団体名 <span class="form-req">必須</span></div><input type="text" class="form-input" placeholder="○○市役所"></div>
+        <div class="form-group"><div class="form-label">ご担当者名 <span class="form-req">必須</span></div><input type="text" class="form-input" placeholder="山田 太郎"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><div class="form-label">メールアドレス <span class="form-req">必須</span></div><input type="email" class="form-input" placeholder="info@example.lg.jp"></div>
+        <div class="form-group"><div class="form-label">電話番号</div><input type="tel" class="form-input" placeholder="03-1234-5678"></div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">ご相談内容 <span class="form-req">必須</span></div>
+        <select class="form-select"><option value="">お選びください</option><option>ふるさと納税の運用支援</option><option>返礼品ページの改善</option><option>広告運用の代行</option><option>料金・プランについて</option><option>その他</option></select>
+      </div>
+      <div class="form-group">
+        <div class="form-label">詳細・ご質問</div>
+        <textarea class="form-textarea" placeholder="現在のお悩みやご質問があればお気軽にご記入ください"></textarea>
+      </div>
+      <div class="form-submit">
+        <button class="form-submit-btn">無料で相談する</button>
+        <p class="form-submit-note">※ 送信後、2営業日以内にご連絡いたします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="svc-inner">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">CARDS<small>株式会社CARDS</small></div>
+        <div class="footer-address">東京都渋谷区渋谷2-14-13 岡崎ビル910</div>
+      </div>
+      <div class="footer-links">
+        <a href="#">会社概要</a><a href="#">サービス一覧</a><a href="#">お知らせ</a><a href="#">採用情報</a><a href="#">プライバシーポリシー</a>
+      </div>
+      <div class="footer-sns">
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></a>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2026 CARDS Inc. All rights reserved.</p>
+  </div>
+</footer>
+
+</div><!-- /main-content -->
+
+<!-- SP Bottom CTA -->
+<div class="sp-bottom-cta">
+  <a href="#contact">無料で資料ダウンロード</a>
+  <a href="#contact">無料で相談する</a>
+</div>
+
+<script>
+// FAQ
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement;
+    const was=item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('active'));
+    if(!was)item.classList.add('active');
+  });
+});
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){window.scrollTo({top:t.offsetTop-80,behavior:'smooth'})}
+  });
+});
+</script>
+</body>
+</html>
